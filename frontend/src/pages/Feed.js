@@ -9,6 +9,7 @@ import like from '../assets/like.svg';
 import comment from '../assets/comment.svg';
 import send from '../assets/send.svg';
 
+import Comment from './Comment';
 import {PostList} from './FeedStyles';
 
 class Feed extends Component{
@@ -75,8 +76,12 @@ class Feed extends Component{
                                 <span>{post.hashtags}</span>
                             </p>
                         </footer>
+                        <div>
+                            <Comment/>
+                        </div>
                     </article>
                 )) }
+                
 
                
             </PostList>

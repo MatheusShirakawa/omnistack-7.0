@@ -1,13 +1,10 @@
-
-
+.DS_Store
 
 #backendignores
 
 backend/node_modules/
 backend/ondeparei.txt
 backend/uploads/
-
-
 
 node_modules/
 # frontend ignores
@@ -20,7 +17,7 @@ frontend/.pnp
 frontend/.pnp.js
 
 # testing
-frontend//coverage
+frontend/coverage
 
 # production
 frontend/build
