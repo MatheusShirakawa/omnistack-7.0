@@ -4,18 +4,14 @@ import io  from 'socket.io-client';
 
 import './Feed.css';
 
-import more from '../assets/more.svg';
-import like from '../assets/like.svg';
-import comment from '../assets/comment.svg';
-import send from '../assets/send.svg';
-
-import Comment from './Comment';
-import {PostList} from './FeedStyles';
+import Post from '../components/Post';
+// import {PostList} from './FeedStyles';
 
 class Feed extends Component{
 
     state = {
         feed: [],
+        show:false,
     };
 
     async componentDidMount(){
@@ -24,7 +20,9 @@ class Feed extends Component{
         const response = await api.get('posts');
 
         this.setState({ feed: response.data });
-    }
+        
+    };
+
 
     registerToSocket = () => {
         const socket = io('http://localhost:3333');
@@ -44,15 +42,17 @@ class Feed extends Component{
         })
     }
 
-    handleLike = id => {
-        api.post(`/posts/${id}/like`);
-    }
-
     render(){
         return (
-            <PostList>
+            // <PostList>
+            <section id="post-list">    
+
+                { this.state.feed.map( (post, index) => (
+                    <Post key={index} post={post}/>
+                ))}
+
                 
-                { this.state.feed.map(post => (
+                {/* { this.state.feed.map(post => (
                     <article key={post._id}>
                         <header>
                             <div className="user-info">
@@ -67,7 +67,9 @@ class Feed extends Component{
                                 <button type="button" onClick={() => this.handleLike(post._id)}>
                                     <img src={like} alt=""/>
                                 </button>
-                                <img src={comment} alt=""/>
+                                <button type="button" onClick={() => this.handleNewComment(post._id)}>
+                                    <img src={comment} alt=""/>
+                                </button>
                                 <img src={send} alt=""/>
                             </div>
                             <strong>{post.likes} curtidas</strong>
@@ -77,14 +79,33 @@ class Feed extends Component{
                             </p>
                         </footer>
                         <div>
-                            <Comment/>
+
+                            {this.state.show && (
+                                <form onSubmit={this.handleSubmitComment}> 
+                                    <input 
+                                        type="text" 
+                                        name="description" 
+                                        onChange={this.handleChange} 
+                                        value={this.state.description}
+                                    />
+                                    <button type="submit">Enviar</button>
+                                </form>
+                            )}                        
+                            
+                            <div className="list">
+                                {this.state.comments && this.state.comments.map(item => (
+                                    <div key={item._id}>
+                                        {item.description}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </article>
-                )) }
+                )) } */}
                 
 
                
-            </PostList>
+            </section>
         );
     }
 }

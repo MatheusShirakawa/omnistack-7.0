@@ -1,10 +1,10 @@
-/* section#post-list{
+section#post-list{
     width:100%;
     max-width: 580px;
     margin:0 auto;
     padding: 0 30px;
-} */
-/* 
+} 
+ 
 section#post-list article{
     background:#fff;
     bordeR:1px solid #ddd;
@@ -16,16 +16,16 @@ section#post-list article header{
     display:flex;
     align-items: center;
     justify-content: space-between;
-} */
-/* 
+} 
+ 
 section#post-list article header .user-info{
     display: flex;
     flex-direction: column;
-} */
-/* 
+} 
+
 section#post-list article header .user-info span{
     font-size: 13px;
-} */
+}
 
 section#post-list article header .user-info span.place{
     font-size: 11px;
@@ -39,7 +39,7 @@ section#post-list article > img{
 }
 
 section#post-list article footer{
-    padding:20px;
+    padding:20px 20px 0 20px;
 }
 
 section#post-list article footer .actions{
@@ -60,7 +60,7 @@ section#post-list article footer .actions img{
 section#post-list article footer p{
     font-size: 13px;
     margin-top: 2px;
-    line-height: 18px;;
+    line-height: 18px;
 }
 
 section#post-list article footer p span{

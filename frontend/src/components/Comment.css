@@ -1,0 +1,57 @@
+.block-comments form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    
+    transition:ease-out .2s;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.block-comments form.active{
+    opacity: 1;
+    visibility: visible;
+    margin:20px 0px;
+    height: auto;
+}
+
+.block-comments form input{
+    height: 40px;
+    padding-left:20px;
+    background:#fff;
+    width: calc(100% - 50px);
+    border:none;
+}
+
+.block-comments form input::placeholder{
+    color:#b1adad;
+}
+
+.block-comments form button{
+    width: 50px;
+    height: 40px;
+    padding:0;
+    line-height: 40px;
+    cursor:pointer;
+    background:#fff;
+    border:none;
+    color:#3897f0;
+}
+
+
+.list-comments ul{
+    padding:0 20px 20px;
+    list-style: none;
+}   
+
+.list-comments li{
+    margin:10px 0;
+}
+
+.list-comments li span{
+    font-size: 14px;
+}

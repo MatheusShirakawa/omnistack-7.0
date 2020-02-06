@@ -5,7 +5,11 @@ module.exports ={
 
     async index(req, res){
 
-        const comments = await Comment.find().sort('-createdAt');
+        const post_id = req.params.id;
+
+        // const comments = await Comment.find().sort('-createdAt');
+        const comments = await Comment.find({foreign_key:post_id }).sort('-createdAt');
+
         return res.json(comments);
 
     },
