@@ -30,7 +30,7 @@ class Feed extends Component{
         //post , like 
 
         socket.on('post', newPost => {
-            this.setState({ feed:[newPost, ... this.state.feed] })
+            this.setState({ feed:[newPost, ... this.state.feed]});
         })
 
         socket.on('like', likedPost =>{
@@ -44,7 +44,6 @@ class Feed extends Component{
 
     render(){
         return (
-            // <PostList>
             <section id="post-list">    
 
                 { this.state.feed.map( (post, index) => (

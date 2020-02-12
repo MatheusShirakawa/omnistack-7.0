@@ -1,20 +1,26 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import api from '../services/api';
 import io  from 'socket.io-client';
-
 
 import more from '../assets/more.svg';
 import like from '../assets/like.svg';
 import comment from '../assets/comment.svg';
 import send from '../assets/send.svg';
 
+import PopUp from './PopUp';
+import './PopUp.css';
+
 import Comment from './Comment';
 import './Comment.css';
+
+import './Post.css';
 
 class Post extends Component{
 
 
     state = {
+        show:false,
+        showPopup:false,
         comments : [],
         description:'',
     }
@@ -33,18 +39,9 @@ class Post extends Component{
         
         socket.on('comment', newComment =>{
             this.setState({
-                comments: newComment.foreign_key == this.props.post._id ? [newComment,...this.state.comments] : [...this.state.comments],
+                comments: newComment.foreign_key === this.props.post._id ? [newComment,...this.state.comments] : [...this.state.comments],
             })
         })
-
-        // socket.on('like', likedPost =>{
-        //     this.setState({
-        //         feed: this.state.feed.map(post =>
-        //             post._id === likedPost._id ? likedPost : post
-        //         )
-        //     })
-        // })
-
     }
 
     handleChange = e => {
@@ -59,13 +56,17 @@ class Post extends Component{
         this.setState({ show:!this.state.show});
     };
 
+    handleOpenPopup = () =>{
+        this.setState({showPopup:!this.state.showPopup});
+    }
+
     handleSubmitComment = async e => {
         e.preventDefault();
 
         const data = {
             description:this.state.description,
         }
-        const response = await api.post(`/comments/${this.props.post._id}/post`, data);
+        await api.post(`/comments/${this.props.post._id}/post`, data);
 
         this.setState({description:''});
     };
@@ -83,7 +84,13 @@ class Post extends Component{
                         <span>{post.author}</span>
                         <span className="place">{post.place}</span>
                     </div>
-                    <img src={more} alt="Mais"/>
+                    <div className="more-button">
+                        <button type="button" onClick={() => this.handleOpenPopup()}>
+                            <img src={more} alt="Mais"/>
+                        </button>
+                        <PopUp show={this.state.showPopup} />
+                    </div>
+                    
                 </header>
                 <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
                 <footer>

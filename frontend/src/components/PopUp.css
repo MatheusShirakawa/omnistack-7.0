@@ -1,0 +1,40 @@
+.popup-actions{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background:#fff;
+    border: 1px solid #ddd;
+    transition: ease-out .2s;
+    padding:10px 20px;
+    right: -18px;
+    top:20px;
+    border-radius: 15px;
+}
+
+.popup-actions:before{
+    
+}
+
+.popup-actions.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-actions ul{
+    list-style: none;
+}
+
+.popup-actions ul li{
+    margin:5px 0;
+    text-align: right;
+}
+
+.popup-actions ul li a{
+    color:#000;
+    transition: ease-out .2s;
+    text-decoration: none;
+}
+
+.popup-actions ul li a:hover{
+    color:#3897f0;
+}
